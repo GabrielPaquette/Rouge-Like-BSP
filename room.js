@@ -8,7 +8,7 @@ class room{
 
   show(){
     noStroke();
-    fill(200)
+    fill(155)
     rect(this.x, this.y, this.w, this.h);
   }
 

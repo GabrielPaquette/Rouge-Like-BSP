@@ -1,8 +1,6 @@
 class character {
-  constructor(n, x, y) {
+  constructor(n) {
     this.name = n;
-    this.x = x;
-    this.y = y;
     this.vx = 0;
     this.vy = 0;
 
@@ -60,6 +58,14 @@ class character {
     default:
       return b;
     }
+  }
+
+  //finds a random room and sets the
+  //player inside of it as starting location
+  setStartingPosition(root){
+    let startingRoom = root.getRoom();
+    this.x = ceil(random(startingRoom.x + 10, startingRoom.x + startingRoom.w - 20));
+    this.y = ceil(random(startingRoom.y + 10, startingRoom.y + startingRoom.h - 20));
   }
 
 }
