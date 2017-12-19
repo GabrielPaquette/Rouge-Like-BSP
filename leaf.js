@@ -140,8 +140,8 @@ class leaf {
   createHallway(left, right) {
 
     //choose one random point in each room, offset from its walls
-    let point1 = createVector(random(left.x+5, left.x+left.w-10), random(left.y+5, left.y+left.h-10));
-  	let point2 = createVector(random(right.x+5, right.x+right.w-10), random(right.y+5, right.y+right.h-10));
+    let point1 = createVector(random(left.x+5, left.x+left.w-HALLWAY_WIDTH), random(left.y+5, left.y+left.h-HALLWAY_WIDTH));
+  	let point2 = createVector(random(right.x+5, right.x+right.w-HALLWAY_WIDTH), random(right.y+5, right.y+right.h-HALLWAY_WIDTH));
     let rw; //real width
     let rh; //real height
     let bottemLeftCorner = false;
@@ -159,34 +159,34 @@ class leaf {
       bottemLeftCorner = true;
   	}
 
-    if(rw >= 0 && rw < 10){
-      rw = 10
+    if(rw >= 0 && rw < HALLWAY_WIDTH){
+      rw = HALLWAY_WIDTH
     }
-    else if (rw < 0 && rw > -10){
-      rw = -10;
+    else if (rw < 0 && rw > -HALLWAY_WIDTH){
+      rw = -HALLWAY_WIDTH;
     }
 
-    if(rh >= 0 && rh < 10){
-      rh = 10
+    if(rh >= 0 && rh < HALLWAY_WIDTH){
+      rh = HALLWAY_WIDTH
     }
-    else if (rh < 0 && rh > -10){
-      rh = -10;
+    else if (rh < 0 && rh > -HALLWAY_WIDTH){
+      rh = -HALLWAY_WIDTH;
     }
 
     //create a path with a right angle between the two chosen points
     //this is to fix a gap when making a corner in the bottom left
     if(bottemLeftCorner){
-      this.halls.push(new room(point1.x, point1.y, rw+10, 10));
+      this.halls.push(new room(point1.x, point1.y, rw+HALLWAY_WIDTH, HALLWAY_WIDTH));
     } else{
-      this.halls.push(new room(point1.x, point1.y, rw, 10));
+      this.halls.push(new room(point1.x, point1.y, rw, HALLWAY_WIDTH));
     }
-    this.halls.push(new room(point1.x+rw, point1.y, 10, rh));
+    this.halls.push(new room(point1.x+rw, point1.y, HALLWAY_WIDTH, rh));
 
   }
 
 
   drawAllRooms() {
-    this.drawHallways();
+
     if(this.left){
       this.left.drawRoom();
       this.left.drawAllRooms();
@@ -195,12 +195,13 @@ class leaf {
       this.right.drawRoom();
       this.right.drawAllRooms();
     }
+    this.drawHallways();
   }
 
   drawHallways(){
     if(this.halls.length > 0){
-      for (let h of this.halls){
-        h.show();
+      for (let hall of this.halls){
+        hall.show(false);
       }
     }
   }
@@ -208,7 +209,7 @@ class leaf {
 
   drawRoom(){
     if(!this.left && !this.right){
-      this.room.show();
+      this.room.show(true);
     }
   }
 

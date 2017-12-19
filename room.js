@@ -6,10 +6,22 @@ class room{
     this.h = h;
   }
 
-  show(){
-    noStroke();
-    fill(155)
-    rect(this.x, this.y, this.w, this.h);
+  show(s){
+    if(s == false){
+      push()
+      strokeWeight(0);
+      fill(155)
+      rect(this.x, this.y, this.w, this.h);
+      pop();
+    }
+    else{
+      push()
+      strokeWeight(2);
+      fill(155)
+      rect(this.x, this.y, this.w, this.h);
+      pop();
+    }
+
   }
 
 

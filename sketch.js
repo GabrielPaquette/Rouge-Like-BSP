@@ -1,7 +1,8 @@
 let root;
-let w = 600;
-let h = 600;
+let w = 800;
+let h = 800;
 let MIN_LEAF_SIZE = 75;
+let HALLWAY_WIDTH = 15;
 let player;
 let keysPressed = [];
 
@@ -20,7 +21,10 @@ function draw() {
 	background(255);
 	//root.showAll();
 	root.drawAllRooms();
-	player.move();
+	if(player.wallCollision()){
+		player.move();
+	}
+
 	player.show();
 
 }

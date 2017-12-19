@@ -8,16 +8,16 @@ class character {
 
   show() {
     push();
-    strokeWeight(9);
+    strokeWeight(8);
     stroke(255,0,0);
-    point(this.x, this.y);
+    rectMode(CENTER)
+    rect(this.x, this.y, 2, 2);
     pop();
   }
 
   move(x,y){
     this.x += this.vx;
     this.y += this.vy;
-
   }
 
   setMove(k, b) {
@@ -25,7 +25,7 @@ class character {
     switch (k) {
     case UP_ARROW:
       if(b){
-        this.vy = -1
+        this.vy = -4
       }
       else{
         this.vy = 0
@@ -33,7 +33,7 @@ class character {
       break;
     case DOWN_ARROW:
       if(b){
-        this.vy = 1
+        this.vy = 4
       }
       else{
         this.vy = 0
@@ -41,7 +41,7 @@ class character {
       break;
     case LEFT_ARROW:
       if(b){
-        this.vx = -1
+        this.vx = -4
       }
       else{
         this.vx = 0
@@ -49,7 +49,7 @@ class character {
       break;
     case RIGHT_ARROW:
       if(b){
-        this.vx = 1
+        this.vx = 4
       }
       else{
         this.vx = 0
@@ -66,6 +66,11 @@ class character {
     let startingRoom = root.getRoom();
     this.x = ceil(random(startingRoom.x + 10, startingRoom.x + startingRoom.w - 20));
     this.y = ceil(random(startingRoom.y + 10, startingRoom.y + startingRoom.h - 20));
+  }
+
+  wallCollision(){
+    let c = get(this.x+this.vx, this.y+this.vy);
+    return (c[0] === 155 && c[1] === 155 && c[2] === 155);
   }
 
 }
