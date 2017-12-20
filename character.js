@@ -3,6 +3,9 @@ class character {
     this.name = n;
     this.vx = 0;
     this.vy = 0;
+    this.health = 100;
+    this.attack = 1;
+    this.defence = 0;
 
   }
 
@@ -71,6 +74,17 @@ class character {
   wallCollision(){
     let c = get(this.x+this.vx, this.y+this.vy);
     return (c[0] === 155 && c[1] === 155 && c[2] === 155);
+  }
+
+  showStats(){
+    return (this.name + "<br />Heath: " + this.health + "<br />Attack: " + this.attack + "<br />Defence: " + this.defence);
+  }
+
+  takeDamage(d){
+    if(this.health > 0){
+      this.health -= d;
+    }
+    
   }
 
 }
